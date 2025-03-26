@@ -1,6 +1,6 @@
 import axios from "axios";
 import { useEffect, useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 
 type CategoriesType = {
   createdAt?: string;
@@ -10,6 +10,7 @@ type CategoriesType = {
 };
 
 function Categories() {
+  const navigate = useNavigate();
   const [categories, setCategories] = useState<CategoriesType[] | []>([]);
 
   useEffect(() => {
@@ -28,11 +29,11 @@ function Categories() {
       <ul className="flex items-center flex-wrap gap-2 justify-between py-4">
         {categories.map((i) => {
           return (
-            <li key={i.id}>
+            <Link to={`categories/${i.id}`} key={i.id}>
               <div className="font-bold text-xl hover:scale-105 border border-gray-300 px-2 py-2 rounded-xl  transition-all  0.5s">
-                <Link to={"/"}>{i.name}</Link>
+                <span>{i.name}</span>
               </div>
-            </li>
+            </Link>
           );
         })}
       </ul>

@@ -7,6 +7,7 @@ type useMyStoreType = {
 const useMyStore = create<useMyStoreType>(() => {
   return {
     loading: true,
+    carts: [],
   };
 });
 export default useMyStore;

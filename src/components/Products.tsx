@@ -2,33 +2,20 @@ import { ShoppingCartOutlined } from "@ant-design/icons";
 import { Card } from "antd";
 import axios from "axios";
 import { useEffect, useState } from "react";
+import { Link } from "react-router-dom";
+import useMyStore from "../store/useMyStore";
+import { DataType, useMyStoreType } from "../Type";
 import Loading from "./Loading";
-
-type ProductType = {
-  categoryId: number;
-  createdAt: string;
-  description: string;
-  id: number;
-  imageUrl: string;
-  name: string;
-  price: string;
-  stock: number;
-};
-
-type DataType = {
-  items: ProductType[];
-  limit: number;
-  page: number;
-  totalItems: number;
-};
 
 function Products() {
   const [data, setData] = useState<DataType | null>(null);
   const [loading, setLoading] = useState<boolean>(true);
+  const state = useMyStore();
+  console.log(state);
 
   useEffect(() => {
     axios
-      .get(`https://nt.softly.uz/api/front/products/`)
+      .get(`https://nt.softly.uz/api/front/products`)
       .then((res) => {
         setData(res.data);
       })
@@ -53,11 +40,13 @@ function Products() {
             <Card
               hoverable
               cover={
-                <img
-                  alt={p.name}
-                  src={p.imageUrl}
-                  className="object-cover h-60 w-full"
-                />
+                <Link to={`/product/${p.id}`}>
+                  <img
+                    alt={p.name}
+                    src={p.imageUrl}
+                    className="object-cover h-60 w-full"
+                  />
+                </Link>
               }
             >
               <Card.Meta
@@ -73,7 +62,13 @@ function Products() {
               />
             </Card>
             <div className=" absolute right-5 bottom-6">
-              <ShoppingCartOutlined style={{ width: 40, fontSize: 28 }} />
+              <ShoppingCartOutlined
+                style={{ width: 40, fontSize: 28 }}
+                className="cursor-pointer"
+                onClick={() => {
+                  // useMyStore.setState({ carts:...car p });
+                }}
+              />
             </div>
           </div>
         ))}
