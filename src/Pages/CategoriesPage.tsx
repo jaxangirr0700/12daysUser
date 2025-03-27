@@ -5,14 +5,17 @@ import { useParams } from "react-router-dom";
 
 function CategoriesPage() {
   const params = useParams();
-  console.log(params);
 
   useEffect(() => {
     axios
       .get(`https://nt.softly.uz/api/front/categories/${params.id}`)
       .then((res) => {
         console.log(res);
-      });
+      })
+      .catch((er) => {
+        console.log(er);
+      })
+      .finally(() => {});
   }, []);
   return (
     <div className="max-w-[1440px] m-auto ">

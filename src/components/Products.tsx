@@ -3,15 +3,12 @@ import { Card } from "antd";
 import axios from "axios";
 import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
-import useMyStore from "../store/useMyStore";
 import { DataType } from "../Type";
 import Loading from "./Loading";
 
 function Products() {
   const [data, setData] = useState<DataType | null>(null);
   const [loading, setLoading] = useState<boolean>(true);
-  const state = useMyStore();
-  console.log(state);
 
   useEffect(() => {
     axios

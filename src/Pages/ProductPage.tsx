@@ -15,7 +15,6 @@ function ProductPage() {
       axios
         .get(`https://nt.softly.uz/api/front/products/${id}`)
         .then((res) => {
-          console.log(res.data);
           setData(res.data);
         })
         .catch((er) => {
@@ -33,7 +32,6 @@ function ProductPage() {
           `https://nt.softly.uz/api/front/products?categoryId=${data.categoryId}`
         )
         .then((res) => {
-          console.log(res);
           setSimilarProducts(res.data.items);
         })
         .catch((er) => {
