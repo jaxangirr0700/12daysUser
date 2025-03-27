@@ -4,7 +4,7 @@ import axios from "axios";
 import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import useMyStore from "../store/useMyStore";
-import { DataType, useMyStoreType } from "../Type";
+import { DataType } from "../Type";
 import Loading from "./Loading";
 
 function Products() {
@@ -65,9 +65,7 @@ function Products() {
               <ShoppingCartOutlined
                 style={{ width: 40, fontSize: 28 }}
                 className="cursor-pointer"
-                onClick={() => {
-                  // useMyStore.setState({ carts:...car p });
-                }}
+                onClick={() => {}}
               />
             </div>
           </div>
